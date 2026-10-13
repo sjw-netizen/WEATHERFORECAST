@@ -3,9 +3,10 @@
 // 버튼을 누르면 우리 백엔드(/api/weather)에 요청하고, 결과를 화면에 표시
 // =============================================================
 
-// 백엔드 서버(http://localhost:8000)에서 열었으면 같은 주소로,
-// 파일을 직접 열었거나 Live Server 등으로 열었으면 localhost:8000으로 요청
-const API_BASE = location.port === "8000" ? "" : "http://localhost:8000";
+// 파일을 직접 열었거나 Live Server(5500번 포트)로 열었으면 로컬 서버(localhost:8000)로,
+// 그 외(로컬 서버 http://localhost:8000, Vercel 배포 주소)에는 같은 주소로 요청
+const isOpenedWithoutServer = location.protocol === "file:" || location.port === "5500";
+const API_BASE = isOpenedWithoutServer ? "http://localhost:8000" : "";
 
 const form = document.getElementById("weather-form");
 const cityInput = document.getElementById("city-input");

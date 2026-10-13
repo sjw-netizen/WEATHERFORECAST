@@ -7,11 +7,15 @@
 ```
 날씨 앱 만들기/
 ├── backend/
-│   └── server.js      ← 백엔드 (Node.js). 외부 날씨 API 호출 + 프론트엔드 파일 제공
+│   ├── weather.js     ← 백엔드 핵심: 외부 날씨 API 호출 (로컬·Vercel 공용)
+│   └── server.js      ← 로컬 실행용 서버. weather.js 사용 + 프론트엔드 파일 제공
+├── api/
+│   └── weather.js     ← Vercel 배포용 백엔드. weather.js 사용
 ├── frontend/
 │   ├── index.html     ← 화면 구조
 │   ├── style.css      ← 화면 디자인
 │   └── script.js      ← 버튼 클릭 → 백엔드에 요청 → 결과 표시
+├── vercel.json        ← Vercel 설정 (frontend 폴더를 웹사이트로 사용)
 └── README.md
 ```
 
@@ -49,6 +53,14 @@
 
 6. **종료**
    터미널에서 `Ctrl + C`를 누릅니다.
+
+## Vercel 배포
+
+이 저장소를 Vercel에 연결하면 별도 설정 없이 배포됩니다.
+
+- 화면: `frontend` 폴더의 파일이 그대로 제공됩니다 (`vercel.json`의 `outputDirectory` 설정).
+- 백엔드: `api/weather.js`가 `/api/weather` 주소로 자동 연결됩니다.
+- Vercel 프로젝트 설정의 **Root Directory**는 비워 두고(저장소 맨 위), **Framework Preset**은 `Other`로 둡니다.
 
 ## 참고
 
